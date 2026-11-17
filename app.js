@@ -4,6 +4,13 @@
 (function(){
     function isiPhone(){return /iPhone|iPad|iPod/.test(navigator.userAgent)}
     function isInstalled(){return window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone===true}
+    function registerServiceWorker(){
+        if("serviceWorker" in navigator){
+            window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})});
+        }
+    }
+
+    registerServiceWorker();
 
     if(isInstalled()) return; // ja instalado, nao precisa
 

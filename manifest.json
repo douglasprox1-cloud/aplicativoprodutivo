@@ -1,6 +1,8 @@
 {
+    "id": "./",
     "name": "Rotina Produtiva",
     "short_name": "Rotina",
+    "lang": "pt-BR",
     "description": "Domine Seu Tempo, Transforme Sua Vida",
     "start_url": "./",
     "scope": "./",
