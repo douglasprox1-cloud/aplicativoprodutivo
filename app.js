@@ -2,6 +2,9 @@
 // O template HTML ja tem beforeinstallprompt e installPWA() inline.
 // Este arquivo serve como fallback e para iOS.
 (function(){
+    var appConfig={name:"Rotina Produtiva",version:"1.0.0"};
+    window.RotinaProdutiva=appConfig;
+
     function isiPhone(){return /iPhone|iPad|iPod/.test(navigator.userAgent)}
     function isInstalled(){return window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone===true}
     function registerServiceWorker(){
