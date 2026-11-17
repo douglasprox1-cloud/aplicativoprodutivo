@@ -12,16 +12,18 @@
     "theme_color": "#3b82f6",
     "icons": [
         {
-            "src": "icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any"
+ "src": "https://project--98ca8037-882c-4cdf-9ed6-99ba5eaa409e-dev.lovable.app/api/public/ext-asset?id=7b3d4fda-c043-45d4-8cd3-4320e90a2ec4",
+ "sizes": "192x192",
+ "type": "image/png",
+ "purpose": "any",
+ "description": "Ícone Rotina Produtiva192 por192"
         },
         {
-            "src": "icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any"
+ "src": "https://project--98ca8037-882c-4cdf-9ed6-99ba5eaa409e-dev.lovable.app/api/public/ext-asset?id=159ac9a6-d080-44c4-a6d4-16dc9bdd2a03",
+ "sizes": "512x512",
+ "type": "image/png",
+ "purpose": "any",
+ "description": "Ícone Rotina Produtiva512 por512"
         }
     ]
 }
