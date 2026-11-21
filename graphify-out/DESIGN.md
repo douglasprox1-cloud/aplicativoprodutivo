@@ -1,6 +1,6 @@
 # Design system
 
-Generated: 2026-11-18T23:01:03.540473+00:00
+Generated: 2026-11-21T23:33:25.175405+00:00
 
 ## Tokens
 - No CSS custom properties found.
