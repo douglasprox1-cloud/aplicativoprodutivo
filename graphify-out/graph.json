@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-11-21T23:33:25.175405+00:00",
+  "generated_at": "2026-11-21T23:34:29.831634+00:00",
   "files": [
     {
       "path": "sw.js",
-      "bytes": 1463
-    },
-    {
-      "path": "manifest.json",
-      "bytes": 1504
-    },
-    {
-      "path": "vercel.json",
-      "bytes": 290
-    },
-    {
-      "path": "app.js",
-      "bytes": 1758
+      "bytes": 3737
     },
     {
       "path": "config-override.json",
       "bytes": 142557
     },
     {
+      "path": "vercel.json",
+      "bytes": 290
+    },
+    {
       "path": "content.js",
       "bytes": 3786
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 1535
+    },
+    {
+      "path": "app.js",
+      "bytes": 5114
     },
     {
       "path": ".lovasiri/sync.json",
