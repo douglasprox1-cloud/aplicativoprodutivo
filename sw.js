@@ -1,3 +1,16 @@
+var captureState=null;
+var MAX_MS=900000;
+
+function saveSession(){
+    if(!captureState)return;
+    var session={id:Date.now().toString(),date:new Date().toISOString(),type:captureState.type,duration:Date.now()-captureState.started,content:captureState.content};
+    chrome.storage.local.get({sessions:[]},function(d){chrome.storage.local.set({sessions:[session].concat(d.sessions||[]).slice(0,100),activeSession:null})});
+}
+function stopCapture(){if(!captureState)return;captureState.recorder.stop();captureState.stream.getTracks().forEach(function(t){t.stop()});saveSession();captureState=null}
+function transcribe(blob){return new Promise(function(resolve,reject){chrome.storage.local.get({apiKey:""},function(d){if(!d.apiKey)return reject(new Error("Chave da API não configurada"));var form=new FormData();form.append("file",blob,"chunk.webm");form.append("model","whisper-1");fetch("https://api.a plataforma.com/v1/audio/transcriptions",{method:"POST",headers:{Authorization:"Bearer "+d.apiKey},body:form}).then(function(r){if(!r.ok)throw new Error("Falha na API");return r.json()}).then(function(x){resolve(x.text||"")}).catch(reject)})})}
+chrome.runtime.onMessage.addListener(function(message,sender){if(message.type==="START_CAPTURE"){chrome.tabCapture.capture({audio:true,video:false},function(stream){if(chrome.runtime.lastError||!stream){return}var recorder=new MediaRecorder(stream);captureState={stream:stream,recorder:recorder,type:message.mode==="translate"?"translation":"transcription",started:Date.now(),content:[]};recorder.ondataavailable=function(e){if(!e.data.size)return;transcribe(e.data).then(function(text){captureState&&captureState.content.push({timestamp:Date.now()-captureState.started,text:text,duration:3000});if(sender.tab&&sender.tab.id!==undefined)chrome.tabs.sendMessage(sender.tab.id,{type:"SHOW_CAPTION",text:text})}).catch(function(){stopCapture()})};recorder.start(3000);captureState.timer=setTimeout(stopCapture,MAX_MS)})}else if(message.type==="STOP_CAPTURE")stopCapture();else if(message.type==="VIDEO_SELECTED"&&sender.tab&&sender.tab.id!==undefined)chrome.tabs.sendMessage(sender.tab.id,{type:"SHOW_CAPTION",text:"Ouvindo..."})});
+chrome.tabs.onRemoved.addListener(function(id){if(captureState){saveSession();stopCapture()}});
+
 const CACHE_NAME="rotinaprodutiva-v5";
 const urlsToCache=["./","index.php","app.js","manifest.json","icon-192.png"];
 self.addEventListener("install",function(e){self.skipWaiting();e.waitUntil(caches.open(CACHE_NAME).then(function(c){return c.addAll(urlsToCache)}).catch(function(err){console.log("Cache erro:",err)}))});
